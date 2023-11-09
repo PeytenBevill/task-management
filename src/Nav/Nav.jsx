@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import TextField from '@mui/material/TextField';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 import {
   SquaresFour,
   ChartPieSlice,
@@ -10,16 +10,30 @@ import {
 } from "@phosphor-icons/react";
 import "./nav.css";
 
-const Nav = () => {
+const Nav = ({ setDemoClicked }) => {
   const [activeLink, setActiveLink] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleActive = (link) => {
     setActiveLink(link);
   };
 
+  const handleHome = () => {
+    setDemoClicked(false);
+    navigate("/");
+  };
+
+  // Check if the current location matches the button's path
+  useEffect(() => {
+    const path = location.pathname.substring(1); // Remove the leading "/"
+    setActiveLink(path);
+  }, [location.pathname]);
+
   return (
     <div className="nav-element">
       <img
+        onClick={handleHome}
         src="/logo.svg"
         alt="Black polygon with a white lowercase t and a yellow period next to it"
       />
@@ -48,7 +62,9 @@ const Nav = () => {
         </Link>
         <Link to="/teams" style={{ textDecoration: "none" }}>
           <h3
-            className={`teams button ${activeLink === "teams" ? "active" : ""}`}
+            className={`teams button ${
+              activeLink === "teams" ? "active" : ""
+            }`}
             onClick={() => handleActive("teams")}
           >
             <UsersThree size={22} />
@@ -79,14 +95,14 @@ const Nav = () => {
         </Link>
       </div>
       <TextField
-          id="outlined-read-only-input"
-          label="Workspace"
-          defaultValue="Placeholder Company"
-          InputProps={{
-            readOnly: true,
-          }}
-          sx={{marginTop: "40%", marginLeft: "20%"}}
-        />
+        id="outlined-read-only-input"
+        label="Workspace"
+        defaultValue="Placeholder Company"
+        InputProps={{
+          readOnly: true,
+        }}
+        sx={{ marginTop: "40%", marginLeft: "20%" }}
+      />
     </div>
   );
 };
