@@ -18,6 +18,10 @@ const Nav = () => {
 
   return (
     <div className="nav-element">
+      <img
+        src="../public/logo.svg"
+        alt="Black polygon with a white lowercase t and a yellow period next to it"
+      />
       <div className="buttons">
         <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <h3
