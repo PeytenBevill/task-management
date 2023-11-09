@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 import {
   SquaresFour,
   ChartPieSlice,
@@ -19,7 +20,7 @@ const Nav = () => {
   return (
     <div className="nav-element">
       <img
-        src="../public/logo.svg"
+        src="/logo.svg"
         alt="Black polygon with a white lowercase t and a yellow period next to it"
       />
       <div className="buttons">
@@ -77,6 +78,15 @@ const Nav = () => {
           </h3>
         </Link>
       </div>
+      <TextField
+          id="outlined-read-only-input"
+          label="Workspace"
+          defaultValue="Placeholder Company"
+          InputProps={{
+            readOnly: true,
+          }}
+          sx={{marginTop: "40%", marginLeft: "20%"}}
+        />
     </div>
   );
 };
