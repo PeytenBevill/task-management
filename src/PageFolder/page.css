@@ -1,8 +1,0 @@
-.page-grid {
-  display: grid;
-  grid-template-columns: .5fr 1.25fr 1.25fr;
-}
-
-.nav {
-  grid-column: 1/2;
-}
