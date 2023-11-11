@@ -6,27 +6,32 @@ import Dashboard from "./Dashboard/Dashboard";
 import { Routes, Route } from "react-router-dom";
 import Settings from "./Settings/Settings";
 import "./App.css";
+import Analytics from "./Analytics/Analytics";
 
 function App() {
   const [demoClicked, setDemoClicked] = useState(false);
   return (
-      <div className="page-grid">
-        <Nav className="nav" setDemoClicked={setDemoClicked} />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Login className="login" setDemoClicked={setDemoClicked} />
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={<Dashboard className="dashboard" />}
-          />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-        {demoClicked && <UserInfo className="userInfo" />}
-      </div>
+    <div className="page-grid">
+      <Nav className="nav" setDemoClicked={setDemoClicked} />
+      <Routes>
+        <Route
+          path="/"
+          element={<Login className="login" setDemoClicked={setDemoClicked} />}
+        />
+        <Route
+          path="/dashboard"
+          element={<Dashboard className="dashboard" />}
+        />
+
+        <Route 
+        path="/settings" element={<Settings />} 
+        />
+
+        <Route path="/analytics" element={<Analytics />} />
+
+      </Routes>
+      {demoClicked && <UserInfo className="userInfo" />}
+    </div>
   );
 }
 
