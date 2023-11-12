@@ -1,13 +1,19 @@
 import React from 'react'
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
-import { Typography, Card, CardContent } from '@mui/material';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
+import { Typography, Card, CardContent, Grid, LinearProgress } from '@mui/material';
 import './Analytics.css'
 
 
 
-const data = [
-  { sample: 'taskA', value: 100},
-  { sample: 'taskB', value: 400}
+const pieData = [
+  { name: 'taskA', value: 100},
+  { name: 'taskB', value: 400}
+
+];
+
+const progressData = [
+  { task: 'taskA', completed: 70},
+  { task: 'taskB', completed: 40}
 
 ];
 
@@ -23,10 +29,12 @@ function Analytics() {
     <Typography color='textSecondary'>
       Pie Charts and progress bars will be implemented here
       </Typography>
+      <Grid container spacing={2}>
+      <Grid item xs={12} md={8}>
       <ResponsiveContainer width="100%" height={400}>
     <PieChart>
       <Pie
-        data={data}
+        data={pieData}
         cx="50%"
         cy="50%"
         labelLine={false}
@@ -35,12 +43,24 @@ function Analytics() {
         dataKey="value"
         label={({name, percent}) => `${name} ${(percent *100).toFixed(0)}%`}
       >
-        {data.map((entry, index) => (
+        {pieData.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
+      <Tooltip />
+      <Legend />
     </PieChart>
       </ResponsiveContainer>
+      </Grid>
+      <Grid item  xs={12} md={4}> 
+      {progressData.map((item, index) => (
+        <div key={index}>
+          <Typography variant='subtitle1'>{item.task}</Typography>
+          <LinearProgress variant='determinate' value={item.completed}/>
+          </div>
+      ))}
+      </Grid>
+      </Grid>
       </CardContent>
       </Card>
   )
