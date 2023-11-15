@@ -7,6 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import Settings from "./Settings/Settings";
 import "./App.css";
 import Analytics from "./Analytics/Analytics";
+import Teams from "./Teams/Teams";
+
 
 function App() {
   const [demoClicked, setDemoClicked] = useState(false);
@@ -28,6 +30,8 @@ function App() {
         />
 
         <Route path="/analytics" element={<Analytics />} />
+
+        <Route path="/teams" element={<Teams />} />
 
       </Routes>
       {demoClicked && <UserInfo className="userInfo" />}
